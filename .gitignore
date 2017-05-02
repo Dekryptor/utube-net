@@ -1,0 +1,9 @@
+# Builds
+bin/
+obj/
+
+# Visual Studio
+.vs/
+
+# NuGet
+packages/
