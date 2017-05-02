@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utube", "Utube\Utube.csproj", "{FED2EB7E-8F77-4759-83DF-7E49F947F5F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utube.ConsoleTests", "Utube.Downloader\Utube.ConsoleTests.csproj", "{4CA80F33-D14F-42C0-81AD-FCA463228702}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utube.ConsoleTests", "Utube.ConsoleTests\Utube.ConsoleTests.csproj", "{4CA80F33-D14F-42C0-81AD-FCA463228702}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utube.Tests", "Utube.Tests\Utube.Tests.csproj", "{208C1318-B623-435A-967D-26CF063298CF}"
 EndProject
