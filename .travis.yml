@@ -1,0 +1,13 @@
+language: cshaarp
+solution: utube-net.sln
+
+mono:
+    - latest
+
+install:
+    - nuget restore utube-net.sln
+    - nuget install NUnit.Runners -Version 3.5.0 -OuputDirectory test_runner
+
+script:
+    - xbuild /p:Configuration=Release utube-net.sln
+    - mono ./test_runner/NUnit.Console.3.5.0/tools/nunit3-console.exe ./Utube.Tests/bin/Release/Utube.Tests.dll

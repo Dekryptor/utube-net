@@ -61,9 +61,9 @@ namespace Utube
             if (string.IsNullOrWhiteSpace(videoId))
                 throw new ArgumentNullException(nameof(videoId));
             if (videoId.Length != VideoIDLength)
-                throw new ArgumentException("videoId must be 11 characters long.", nameof(videoId));
-            //if (!Utils.ValidYoutubeID(videoId))
-            //    throw new ArgumentException("videoId contains invalid Youtube ID characters.", "videoId");
+                throw new ArgumentException("Video ID must be 11 characters long.", nameof(videoId));
+            if (!Utils.ValidYoutubeID(videoId))
+                throw new ArgumentException("Video ID contains invalid Youtube ID characters.", nameof(videoId));
 
             Url = new Uri(BaseUrl.OriginalString + videoId);
 
@@ -100,7 +100,7 @@ namespace Utube
         public YoutubeVideo(Uri url, VideoRefreshFlags flags)
         {
             if (url == null)
-                throw new ArgumentNullException("url");
+                throw new ArgumentNullException(nameof(url));
 
             Url = url;
 
@@ -141,9 +141,16 @@ namespace Utube
             }
             set
             {
-                // Check host of Uri value.
-                if (!Utils.ValidVideoUrl(value))
-                    throw new ArgumentException("value must be pointing to a Youtube video.", nameof(value));
+                // Reset the YoutubeVideo object if the URL is null.
+                if (value == null)
+                {
+                    Reset();
+                    return;
+                }
+                
+                // Check if the host of the 
+                if (!Utils.ValidVideoHost(value))
+                    throw new ArgumentException("Value host must be a Youtube host.", nameof(value));
 
                 // Find the videoId in the Uri value given.
                 var videoId = (string)null;
@@ -153,7 +160,7 @@ namespace Utube
                     case "youtube.com":
                         var queryParams = Utils.ParseQuery(value.Query);
                         if (!queryParams.Contains("v"))
-                            throw new ArgumentException("value does not contain a video query.", nameof(value));
+                            throw new ArgumentException("Value does not contain a video query.", nameof(value));
 
                         videoId = (string)queryParams["v"];
 
@@ -175,14 +182,14 @@ namespace Utube
                 }
 
                 if (string.IsNullOrEmpty(videoId))
-                    throw new ArgumentException("value does not contain a Youtube video ID.", nameof(value));
+                    throw new ArgumentException("Value does not contain a Youtube video ID.", nameof(value));
                 if (videoId.Length != VideoIDLength)
                     throw new ArgumentException("value's Youtube video ID must be 11 characters long.", nameof(value));
                 if (!Utils.ValidYoutubeID(videoId))
                     throw new ArgumentException("value contains invalid Youtube ID characters.", nameof(value));
 
-                // Reset the object's field if the video Id differs.
-                if (_videoId != videoId)
+                // Reset the object's field if the video Id differs from the current one.
+                if (_videoId != null && _videoId != videoId)
                     Reset();
 
                 _videoId = videoId;

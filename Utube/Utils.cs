@@ -6,14 +6,14 @@ namespace Utube
     internal static class Utils
     {
         // Returns true if the specified URL is a valid Youtube video URL.
-        public static bool ValidVideoUrl(Uri url)
+        public static bool ValidVideoHost(Uri url)
         {
             var host = url.Host;
             switch (host)
             {
                 case "www.youtube.com":
                 case "youtube.com":
-                    if (url.LocalPath == "/watch")
+                    if (url.LocalPath == "/watch" || url.LocalPath == "/embed")
                         return true;
                     return false;
 
@@ -26,10 +26,11 @@ namespace Utube
         }
 
         // Returns true if the specified URL is a valid Youtube playlist URL.
-        public static bool ValidPlaylistUrl(Uri url)
+        public static bool ValidPlaylistHost(Uri url)
         {
             if (url.Host != "www.youtube.com")
                 return false;
+
             if (url.LocalPath != "/playlist")
             {
                 if (url.AbsoluteUri.Contains("&list="))

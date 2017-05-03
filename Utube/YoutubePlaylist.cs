@@ -195,7 +195,7 @@ namespace Utube
             }
             set
             {
-                if (!Utils.ValidPlaylistUrl(value))
+                if (!Utils.ValidPlaylistHost(value))
                     throw new ArgumentException("value must be a valid Youtube playlist URL.", "value");
 
                 var indexId = value.Query.IndexOf("list=");

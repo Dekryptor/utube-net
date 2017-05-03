@@ -12,15 +12,15 @@ namespace Utube.Tests
             // VideoSize(string).
             Assert.Throws<ArgumentNullException>(() => VideoSize.Parse(null));
             Assert.Throws<ArgumentNullException>(() => VideoSize.Parse(""));
-            Assert.Throws<ArgumentException>(() => VideoSize.Parse("x"));
-            Assert.Throws<ArgumentException>(() => VideoSize.Parse("xx"));
-            Assert.Throws<ArgumentException>(() => VideoSize.Parse("0x"));
-            Assert.Throws<ArgumentException>(() => VideoSize.Parse("x0"));
-            Assert.Throws<ArgumentException>(() => VideoSize.Parse("AxA"));
-            Assert.Throws<ArgumentException>(() => VideoSize.Parse("1920x1080x36"));
-            Assert.Throws<ArgumentOutOfRangeException>(() => VideoSize.Parse("1231x-1231"));
-            Assert.Throws<ArgumentOutOfRangeException>(() => VideoSize.Parse("-1231x1231"));
-            Assert.Throws<ArgumentOutOfRangeException>(() => VideoSize.Parse("-1231x-1231"));
+            Assert.Throws<FormatException>(() => VideoSize.Parse("x"));
+            Assert.Throws<FormatException>(() => VideoSize.Parse("xx"));
+            Assert.Throws<FormatException>(() => VideoSize.Parse("0x"));
+            Assert.Throws<FormatException>(() => VideoSize.Parse("x0"));
+            Assert.Throws<FormatException>(() => VideoSize.Parse("AxA"));
+            Assert.Throws<FormatException>(() => VideoSize.Parse("1920x1080x36"));
+            Assert.Throws<FormatException>(() => VideoSize.Parse("1231x-1231"));
+            Assert.Throws<FormatException>(() => VideoSize.Parse("-1231x1231"));
+            Assert.Throws<FormatException>(() => VideoSize.Parse("-1231x-1231"));
 
             // VideoSize(int, int).
             Assert.Throws<ArgumentOutOfRangeException>(() => new VideoSize(-1, 1));

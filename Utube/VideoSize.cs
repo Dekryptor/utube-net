@@ -183,7 +183,7 @@ namespace Utube
         public static VideoSize Parse(string value)
         {
             if (string.IsNullOrWhiteSpace(value))
-                throw new ArgumentNullException("size");
+                throw new ArgumentNullException(nameof(value));
             if (value.CountOccurences("x") != 1)
                 throw new FormatException("size must contain a digit, an 'x' character and a digit again.");
 

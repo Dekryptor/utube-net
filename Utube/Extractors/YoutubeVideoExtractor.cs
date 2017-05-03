@@ -52,7 +52,10 @@ namespace Utube.Extractors
                 if (queryParams.Contains("itag"))
                     itag = int.Parse((string)queryParams["itag"]);
 
-                var format = new YoutubeVideoFormat(itag) { VideoUrl = new Uri(url) };
+                var format = new YoutubeVideoFormat(itag)
+                {
+                    _videoUrl = new Uri(url)
+                };
                 vidFmts[i] = format;
             }
 

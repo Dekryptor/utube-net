@@ -4,8 +4,7 @@ namespace Utube.Extractors
 {
     internal class YoutubePlaylistExtractor : BaseExtractor
     {
-        public YoutubePlaylistExtractor(string webpage) 
-            : base(webpage)
+        public YoutubePlaylistExtractor(string webpage) : base(webpage)
         {
             // Space
         }

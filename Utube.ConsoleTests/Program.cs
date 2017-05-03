@@ -17,7 +17,7 @@ namespace Utube.ConsoleTests
             client.DownloadFileCompleted += DownloadCompleted;
             s_startTime = DateTime.Now;
             s_lastUpdate = DateTime.Now;
-            client.DownloadFileAsync(video2.FormatsAvailable[0].VideoUrl, CleanFileName(video2.Title) + video2.FormatsAvailable[0].Extension);
+            client.DownloadFileAsync(video2.Formats[0].VideoUrl, CleanFileName(video2.Title) + video2.Formats[0].Extension);
             Console.ReadLine();
 
             //Console.WriteLine("Downloading & parsing {0} playlist...", "PL4yXuCu4RM9zLDmDPSlBd32vmAL0AKq9O");
