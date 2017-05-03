@@ -13,14 +13,14 @@ namespace Utube
     {
         #region Constants
         /// <summary>
-        /// Base URL of Youtube playlists.
+        ///     Base URL of Youtube playlists.
         /// </summary>
         public static readonly Uri BaseUrl = new Uri("https://www.youtube.com/playlist?list=");
         #endregion
 
         #region Constructors
         /// <summary>
-        /// Initializes a new instance of the <see cref="YoutubePlaylist"/> class.
+        ///     Initializes a new instance of the <see cref="YoutubePlaylist"/> class.
         /// </summary>
         public YoutubePlaylist()
         {
@@ -28,26 +28,31 @@ namespace Utube
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="YoutubePlaylist"/> class with the specified
-        /// Youtube playlist ID.
+        ///     Initializes a new instance of the <see cref="YoutubePlaylist"/> class with the specified
+        ///     Youtube playlist ID.
         /// </summary>
-        /// <param name="playlistId">Youtube playlist ID.</param>
+        /// 
+        /// <param name="playlistId">
+        ///     Youtube playlist ID.
+        /// </param>
         public YoutubePlaylist(string playlistId) : this(playlistId, PlaylistRefreshFlags.All)
         {
             // Space
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="YoutubePlaylist"/> class with the specified
-        /// Youtube playlist ID and the specified <see cref="PlaylistRefreshFlags"/> which will be passed to
-        /// the <see cref="Refresh(PlaylistRefreshFlags, VideoRefreshFlags)"/> with <see cref="VideoRefreshFlags.None"/>
-        /// method when the <see cref="YoutubePlaylist"/> object is done initializing.
+        ///     Initializes a new instance of the <see cref="YoutubePlaylist"/> class with the specified
+        ///     Youtube playlist ID and the specified <see cref="PlaylistRefreshFlags"/> which will be passed to
+        ///     the <see cref="Refresh(PlaylistRefreshFlags, VideoRefreshFlags)"/> with <see cref="VideoRefreshFlags.None"/>
+        ///     method when the <see cref="YoutubePlaylist"/> object is done initializing.
         /// </summary>
         /// 
-        /// <param name="playlistId">Youtube playlist ID.</param>
+        /// <param name="playlistId">
+        ///     Youtube playlist ID.
+        /// </param>
         /// <param name="flags">
-        /// The <see cref="PlaylistRefreshFlags"/> which will be passed to the <see cref="Refresh(PlaylistRefreshFlags)"/> method
-        /// when the <see cref="YoutubePlaylist"/> is done initializing.
+        ///     The <see cref="PlaylistRefreshFlags"/> which will be passed to the <see cref="Refresh(PlaylistRefreshFlags)"/> method
+        ///     when the <see cref="YoutubePlaylist"/> is done initializing.
         /// </param>
         public YoutubePlaylist(string playlistId, PlaylistRefreshFlags flags) : this(playlistId, flags, VideoRefreshFlags.None)
         {
@@ -55,20 +60,22 @@ namespace Utube
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="YoutubePlaylist"/> class with the specified
-        /// Youtube playlist ID and the specified <see cref="PlaylistRefreshFlags"/> and <see cref="VideoRefreshFlags"/> 
-        /// which will be passed to the <see cref="Refresh(PlaylistRefreshFlags, VideoRefreshFlags)"/> method when the <see cref="YoutubePlaylist"/> 
-        /// object is done initializing.
+        ///     Initializes a new instance of the <see cref="YoutubePlaylist"/> class with the specified
+        ///     Youtube playlist ID and the specified <see cref="PlaylistRefreshFlags"/> and <see cref="VideoRefreshFlags"/> 
+        ///     which will be passed to the <see cref="Refresh(PlaylistRefreshFlags, VideoRefreshFlags)"/> method when the <see cref="YoutubePlaylist"/> 
+        ///     object is done initializing.
         /// </summary>
         /// 
-        /// <param name="playlistId">Youtube playlist ID.</param>
+        /// <param name="playlistId">
+        ///     Youtube playlist ID.
+        /// </param>
         /// <param name="flags">
-        /// The <see cref="PlaylistRefreshFlags"/> which will be passed to the <see cref="Refresh(PlaylistRefreshFlags, VideoRefreshFlags)"/> method
-        /// when the <see cref="YoutubePlaylist"/> is done initializing.
+        ///     The <see cref="PlaylistRefreshFlags"/> which will be passed to the <see cref="Refresh(PlaylistRefreshFlags, VideoRefreshFlags)"/> method
+        ///     when the <see cref="YoutubePlaylist"/> is done initializing.
         /// </param>
         /// <param name="vidFlags">
-        /// The <see cref="VideoRefreshFlags"/> which will be passed to the <see cref="Refresh(PlaylistRefreshFlags, VideoRefreshFlags)"/> method
-        /// when the <see cref="YoutubePlaylist"/> is done initializing.
+        ///     The <see cref="VideoRefreshFlags"/> which will be passed to the <see cref="Refresh(PlaylistRefreshFlags, VideoRefreshFlags)"/> method
+        ///     when the <see cref="YoutubePlaylist"/> is done initializing.
         /// </param>
         public YoutubePlaylist(string playlistId, PlaylistRefreshFlags flags, VideoRefreshFlags vidFlags)
         {
@@ -83,26 +90,31 @@ namespace Utube
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="YoutubePlaylist"/> class with the specified
-        /// URL pointing to the video on Youtube.
+        ///     Initializes a new instance of the <see cref="YoutubePlaylist"/> class with the specified
+        ///     URL pointing to the video on Youtube.
         /// </summary>
-        /// <param name="url">URL pointing to the video on Youtube.</param>
+        /// 
+        /// <param name="url">
+        ///     URL pointing to the video on Youtube.
+        /// </param>
         public YoutubePlaylist(Uri url) : this(url, PlaylistRefreshFlags.All, VideoRefreshFlags.None)
         {
             // Space
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="YoutubePlaylist"/> class with the specified
-        /// URL pointing to the video on Youtube and the specified <see cref="PlaylistRefreshFlags"/> which will be passed to
-        /// the <see cref="Refresh(PlaylistRefreshFlags, VideoRefreshFlags)"/> with <see cref="VideoRefreshFlags.None"/>
-        /// method when the <see cref="YoutubePlaylist"/> object is done initializing.
+        ///     Initializes a new instance of the <see cref="YoutubePlaylist"/> class with the specified
+        ///     URL pointing to the video on Youtube and the specified <see cref="PlaylistRefreshFlags"/> which will be passed to
+        ///     the <see cref="Refresh(PlaylistRefreshFlags, VideoRefreshFlags)"/> with <see cref="VideoRefreshFlags.None"/>
+        ///     method when the <see cref="YoutubePlaylist"/> object is done initializing.
         /// </summary>
         /// 
-        /// <param name="url">URL pointing to the video on Youtube.</param>
+        /// <param name="url">
+        ///     URL pointing to the video on Youtube.
+        /// </param>
         /// <param name="flags">
-        /// The <see cref="PlaylistRefreshFlags"/> which will be passed to the <see cref="Refresh(PlaylistRefreshFlags)"/> method
-        /// when the <see cref="YoutubePlaylist"/> is done initializing.
+        ///     The <see cref="PlaylistRefreshFlags"/> which will be passed to the <see cref="Refresh(PlaylistRefreshFlags)"/> method
+        ///     when the <see cref="YoutubePlaylist"/> is done initializing.
         /// </param>
         public YoutubePlaylist(Uri url, PlaylistRefreshFlags flags) : this(url, flags, VideoRefreshFlags.None)
         {
@@ -110,20 +122,22 @@ namespace Utube
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="YoutubePlaylist"/> class with the specified
-        /// URL pointing to the video on Youtube and the specified <see cref="PlaylistRefreshFlags"/> and <see cref="VideoRefreshFlags"/> 
-        /// which will be passed to the <see cref="Refresh(PlaylistRefreshFlags, VideoRefreshFlags)"/> method when the <see cref="YoutubePlaylist"/> 
-        /// object is done initializing.
+        ///     Initializes a new instance of the <see cref="YoutubePlaylist"/> class with the specified
+        ///     URL pointing to the video on Youtube and the specified <see cref="PlaylistRefreshFlags"/> and <see cref="VideoRefreshFlags"/> 
+        ///     which will be passed to the <see cref="Refresh(PlaylistRefreshFlags, VideoRefreshFlags)"/> method when the <see cref="YoutubePlaylist"/> 
+        ///     object is done initializing.
         /// </summary>
         /// 
-        /// <param name="url">URL pointing to the video on Youtube.</param>
+        /// <param name="url">
+        ///     URL pointing to the video on Youtube.
+        /// </param>
         /// <param name="flags">
-        /// The <see cref="PlaylistRefreshFlags"/> which will be passed to the <see cref="Refresh(PlaylistRefreshFlags, VideoRefreshFlags)"/> method
-        /// when the <see cref="YoutubePlaylist"/> is done initializing.
+        ///     The <see cref="PlaylistRefreshFlags"/> which will be passed to the <see cref="Refresh(PlaylistRefreshFlags, VideoRefreshFlags)"/> method
+        ///     when the <see cref="YoutubePlaylist"/> is done initializing.
         /// </param>
         /// <param name="vidFlags">
-        /// The <see cref="VideoRefreshFlags"/> which will be passed to the <see cref="Refresh(PlaylistRefreshFlags, VideoRefreshFlags)"/> method
-        /// when the <see cref="YoutubePlaylist"/> is done initializing.
+        ///     The <see cref="VideoRefreshFlags"/> which will be passed to the <see cref="Refresh(PlaylistRefreshFlags, VideoRefreshFlags)"/> method
+        ///     when the <see cref="YoutubePlaylist"/> is done initializing.
         /// </param>
         public YoutubePlaylist(Uri url, PlaylistRefreshFlags flags, VideoRefreshFlags vidFlags)
         {
@@ -150,10 +164,15 @@ namespace Utube
         private long _views;
 
         /// <summary>
-        /// Gets the <see cref="YoutubeVideo"/> at the specified index.
+        ///     Gets the <see cref="YoutubeVideo"/> at the specified index.
         /// </summary>
-        /// <param name="index">The zero-based index of the <see cref="YoutubeVideo"/> to get.</param>
-        /// <returns>The <see cref="YoutubeVideo"/> at the specified index.</returns>
+        /// 
+        /// <param name="index">
+        ///     The zero-based index of the <see cref="YoutubeVideo"/> to get.
+        /// </param>
+        /// <returns>
+        ///     The <see cref="YoutubeVideo"/> at the specified index.
+        /// </returns>
         public YoutubeVideo this[int index]
         {
             get
@@ -166,7 +185,7 @@ namespace Utube
         }
 
         /// <summary>
-        /// Gets or sets the URL pointing to the <see cref="YoutubePlaylist"/> on Youtube.
+        ///     Gets or sets the URL pointing to the <see cref="YoutubePlaylist"/> on Youtube.
         /// </summary>
         public Uri Url
         {
@@ -193,29 +212,29 @@ namespace Utube
         }
 
         /// <summary>
-        /// Gets the playlist ID of the <see cref="YoutubePlaylist"/>.
+        ///     Gets the playlist ID of the <see cref="YoutubePlaylist"/>.
         /// </summary>
         public string Id => _playlistId;
 
         /// <summary>
-        /// Gets the title of the <see cref="YoutubePlaylist"/>.
+        ///     Gets the title of the <see cref="YoutubePlaylist"/>.
         /// </summary>
         public string Title => _title;
 
         /// <summary>
-        /// Gets the number of views on the <see cref="YoutubePlaylist"/>.
+        ///     Gets the number of views on the <see cref="YoutubePlaylist"/>.
         /// </summary>
         public long Views => _views;
 
         /// <summary>
-        /// Gets the number of videos in the <see cref="YoutubePlaylist"/>.
+        ///     Gets the number of videos in the <see cref="YoutubePlaylist"/>.
         /// </summary>
         public int Count => _playlist.Count;
         #endregion
 
         #region Methods
         /// <summary>
-        /// Refreshes the <see cref="YoutubePlaylist"/> object with the flags <see cref="PlaylistRefreshFlags.All"/> and updates it.
+        ///     Refreshes the <see cref="YoutubePlaylist"/> object with the flags <see cref="PlaylistRefreshFlags.All"/> and updates it.
         /// </summary>
         public void Refresh()
         {
@@ -223,10 +242,11 @@ namespace Utube
         }
 
         /// <summary>
-        /// Refreshes the <see cref="YoutubePlaylist"/> object with the specified <see cref="PlaylistRefreshFlags"/> and updates it.
+        ///     Refreshes the <see cref="YoutubePlaylist"/> object with the specified <see cref="PlaylistRefreshFlags"/> and updates it.
         /// </summary>
+        /// 
         /// <param name="flags">
-        /// <see cref="PlaylistRefreshFlags"/> with which to update the <see cref="YoutubePlaylist"/> object.
+        ///     <see cref="PlaylistRefreshFlags"/> with which to update the <see cref="YoutubePlaylist"/> object.
         /// </param>
         public void Refresh(PlaylistRefreshFlags flags)
         {
@@ -234,17 +254,17 @@ namespace Utube
         }
 
         /// <summary>
-        /// Refreshes the <see cref="YoutubePlaylist"/> object with the specified <see cref="PlaylistRefreshFlags"/> and 
-        /// the specified <see cref="VideoRefreshFlags"/> with which to update the <see cref="YoutubeVideo"/> objects in
-        /// the <see cref="YoutubePlaylist"/>.
+        ///     Refreshes the <see cref="YoutubePlaylist"/> object with the specified <see cref="PlaylistRefreshFlags"/> and 
+        ///     the specified <see cref="VideoRefreshFlags"/> with which to update the <see cref="YoutubeVideo"/> objects in
+        ///     the <see cref="YoutubePlaylist"/>.
         /// </summary>
         /// 
         /// <param name="flags">
-        /// <see cref="PlaylistRefreshFlags"/> with which to update the <see cref="YoutubePlaylist"/> object.
+        ///     <see cref="PlaylistRefreshFlags"/> with which to update the <see cref="YoutubePlaylist"/> object.
         /// </param>
         /// <param name="vidFlags">
-        /// <see cref="VideoRefreshFlags"/> with which to update the <see cref="YoutubeVideo"/> objects in the
-        /// <see cref="YoutubePlaylist"/>.
+        ///     <see cref="VideoRefreshFlags"/> with which to update the <see cref="YoutubeVideo"/> objects in the
+        ///     <see cref="YoutubePlaylist"/>.
         /// </param>
         public void Refresh(PlaylistRefreshFlags flags, VideoRefreshFlags vidFlags)
         {
@@ -273,9 +293,11 @@ namespace Utube
         }
 
         /// <summary>
-        /// Returns an enumerator that iterates through the <see cref="YoutubePlaylist"/>.
+        ///     Returns an enumerator that iterates through the <see cref="YoutubePlaylist"/>.
         /// </summary>
-        /// <returns>Enumerator that iterates through the <see cref="YoutubePlaylist"/>.</returns>
+        /// <returns>
+        ///     Enumerator that iterates through the <see cref="YoutubePlaylist"/>.
+        /// </returns>
         public IEnumerator<YoutubeVideo> GetEnumerator()
         {
             return _playlist.GetEnumerator();

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Utube
 {
     /// <summary>
-    /// Represents a Youtube video format.
+    ///     Represents a Youtube video format.
     /// </summary>
     public class YoutubeVideoFormat
     {
@@ -31,69 +31,82 @@ namespace Utube
 
         internal YoutubeVideoFormat(string ext, VideoSize size, bool is3d = false)
         {
-            Extension = ext;
-            Size = size;
+            _extension = ext;
+            _size = size;
         }
 
         internal YoutubeVideoFormat(Uri url, VideoSize size, int formatCode)
         {
-            VideoUrl = url;
-            FormatCode = formatCode;
-            Size = size;
+            _videoUrl = url;
+            _formatCode = formatCode;
+            _size = size;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="YoutubeVideoFormat"/> with the specified
-        /// format code and tries to fill the <see cref="YoutubeVideoFormat"/> with known data according to
-        /// the format code provided.
+        ///     Initializes a new instance of the <see cref="YoutubeVideoFormat"/> with the specified
+        ///     format code and tries to fill the <see cref="YoutubeVideoFormat"/> with known data according to
+        ///     the format code provided.
         /// </summary>
-        /// <param name="formatCode">Format code of the <see cref="YoutubeVideo"/>.</param>
+        /// 
+        /// <param name="formatCode">
+        ///     Format code of the <see cref="YoutubeVideo"/>.
+        /// </param>
         public YoutubeVideoFormat(int formatCode) : this(formatCode, true)
         {
             // Space
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="YoutubeVideoFormat"/> with the specified
-        /// format code and tries to fill the <see cref="YoutubeVideoFormat"/> with known data according to
-        /// the format code if specified.
+        ///     Initializes a new instance of the <see cref="YoutubeVideoFormat"/> with the specified
+        ///     format code and tries to fill the <see cref="YoutubeVideoFormat"/> with known data according to
+        ///     the format code if specified.
         /// </summary>
-        /// <param name="formatCode">Format code of the <see cref="YoutubeVideo"/>.</param>
-        /// <param name="fill">If set to <c>true</c> it will try to fill the <see cref="YoutubeVideoFormat"/> with known data; otherwise not.</param>
+        /// 
+        /// <param name="formatCode">
+        ///     Format code of the <see cref="YoutubeVideo"/>.
+        /// </param>
+        /// <param name="fill">
+        ///     If set to <c>true</c> it will try to fill the <see cref="YoutubeVideoFormat"/> with known data; otherwise not.
+        /// </param>
         public YoutubeVideoFormat(int formatCode, bool fill)
         {
-            FormatCode = formatCode;
+            _formatCode = formatCode;
             if (fill && _itagDictionary.ContainsKey(formatCode))
             {
                 var format = _itagDictionary[formatCode];
-                Size = format.Size;
-                Extension = format.Extension;
+                _size = format.Size;
+                _extension = format.Extension;
             }
             else
             {
-                Size = VideoSize.UnknownSize;
+                _size = VideoSize.UnknownSize;
             }
         }
 
-        /// <summary>
-        /// Gets the format code for the <see cref="YoutubeVideoFormat"/>.
-        /// </summary>
-        public int FormatCode { get; internal set; }
+        private readonly int _formatCode;
+        internal Uri _videoUrl;
+        private readonly VideoSize _size;
+        private readonly string _extension;
 
         /// <summary>
-        /// Gets the URL pointing to the <see cref="YoutubeVideo"/> file.
+        ///     Gets the format code for the <see cref="YoutubeVideoFormat"/>.
         /// </summary>
-        public Uri VideoUrl { get; internal set; }
+        public int FormatCode => _formatCode;
 
         /// <summary>
-        /// Gets the size/dimensions of the <see cref="YoutubeVideo"/>. Returns <see cref="VideoSize.UnknownSize"/> if
-        /// the size/dimensions of the <see cref="YoutubeVideo"/> is unknown.
+        ///     Gets the URL pointing to the <see cref="YoutubeVideo"/> file.
         /// </summary>
-        public VideoSize Size { get; internal set; }
+        public Uri VideoUrl => _videoUrl;
 
         /// <summary>
-        /// Gets the extension of the <see cref="YoutubeVideoFormat"/> file.
+        ///     Gets the size/dimensions of the <see cref="YoutubeVideo"/>. Returns <see cref="VideoSize.UnknownSize"/> if
+        ///     the size/dimensions of the <see cref="YoutubeVideo"/> is unknown.
         /// </summary>
-        public string Extension { get; internal set; }
+        public VideoSize Size => _size;
+
+        /// <summary>
+        ///     Gets the extension of the <see cref="YoutubeVideoFormat"/> file.
+        /// </summary>
+        public string Extension => _extension;
     }
 }

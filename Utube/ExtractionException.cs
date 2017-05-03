@@ -3,12 +3,12 @@
 namespace Utube
 {
     /// <summary>
-    /// Exception thrown when there is an error when extracting data.
+    ///     Exception thrown when there is an error when extracting data.
     /// </summary>
     public class ExtractionException : Exception
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ExtractionException"/> class.
+        ///     Initializes a new instance of the <see cref="ExtractionException"/> class.
         /// </summary>
         public ExtractionException() : base()
         {
@@ -16,10 +16,12 @@ namespace Utube
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ExtractionException"/> class with
-        /// the specified error message.
+        ///     Initializes a new instance of the <see cref="ExtractionException"/> class with
+        ///     the specified error message.
         /// </summary>
-        /// <param name="message">The message that describes the error.</param>
+        /// <param name="message">
+        ///     The message that describes the error.
+        /// </param>
         public ExtractionException(string message) : base(message)
         {
             // Space

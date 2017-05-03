@@ -16,14 +16,14 @@ namespace Utube
         internal const int VideoIDLength = 11;
 
         /// <summary>
-        /// Base URL of Youtube videos.
+        ///     Base URL of Youtube videos.
         /// </summary>
         public static readonly Uri BaseUrl = new Uri("https://www.youtube.com/watch?v=");
         #endregion
 
         #region Constructors
         /// <summary>
-        /// Initializes a new instance of the <see cref="YoutubeVideo"/> class.
+        ///     Initializes a new instance of the <see cref="YoutubeVideo"/> class.
         /// </summary>
         public YoutubeVideo()
         {
@@ -31,26 +31,30 @@ namespace Utube
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="YoutubeVideo"/> class with
-        /// the specified Youtube video ID.
+        ///     Initializes a new instance of the <see cref="YoutubeVideo"/> class with
+        ///     the specified Youtube video ID.
         /// </summary>
-        /// <param name="videoId">Youtube video ID.</param>
-        public YoutubeVideo(string videoId)
-            : this(videoId, VideoRefreshFlags.All)
+        /// 
+        /// <param name="videoId">
+        ///     Youtube video ID.
+        /// </param>
+        public YoutubeVideo(string videoId) : this(videoId, VideoRefreshFlags.All)
         {
             // Space
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="YoutubeVideo"/> class with
-        /// the specified Youtube video ID and the specified <see cref="VideoRefreshFlags"/> which will be passed to
-        /// the <see cref="Refresh(VideoRefreshFlags)"/> method when the <see cref="YoutubeVideo"/> object is done initializing.
+        ///     Initializes a new instance of the <see cref="YoutubeVideo"/> class with
+        ///     the specified Youtube video ID and the specified <see cref="VideoRefreshFlags"/> which will be passed to
+        ///     the <see cref="Refresh(VideoRefreshFlags)"/> method when the <see cref="YoutubeVideo"/> object is done initializing.
         /// </summary>
         /// 
-        /// <param name="videoId">Youtube video ID.</param>
+        /// <param name="videoId">
+        ///     Youtube video ID.
+        /// </param>
         /// <param name="flags">
-        /// The <see cref="VideoRefreshFlags"/> which will be passed to the <see cref="Refresh(VideoRefreshFlags)"/> method
-        /// when the <see cref="YoutubeVideo"/> is done initializing.
+        ///     The <see cref="VideoRefreshFlags"/> which will be passed to the <see cref="Refresh(VideoRefreshFlags)"/> method
+        ///     when the <see cref="YoutubeVideo"/> is done initializing.
         /// </param>
         public YoutubeVideo(string videoId, VideoRefreshFlags flags)
         {
@@ -68,26 +72,30 @@ namespace Utube
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="YoutubeVideo"/> class with
-        /// the specified URL pointing to the video on Youtube.
+        ///     Initializes a new instance of the <see cref="YoutubeVideo"/> class with
+        ///     the specified URL pointing to the video on Youtube.
         /// </summary>
-        /// <param name="url">URL pointing to the video on Youtube.</param>
-        public YoutubeVideo(Uri url)
-            : this(url, VideoRefreshFlags.All)
+        /// 
+        /// <param name="url">
+        ///     URL pointing to the video on Youtube.
+        /// </param>
+        public YoutubeVideo(Uri url) : this(url, VideoRefreshFlags.All)
         {
             // Space
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="YoutubeVideo"/> class with
-        /// the specified URL pointing to the video on Youtube and the specified <see cref="VideoRefreshFlags"/> which will be passed to
-        /// the <see cref="Refresh(VideoRefreshFlags)"/> method when the <see cref="YoutubeVideo"/> object is done initializing.
+        ///     Initializes a new instance of the <see cref="YoutubeVideo"/> class with
+        ///     the specified URL pointing to the video on Youtube and the specified <see cref="VideoRefreshFlags"/> which will be passed to
+        ///     the <see cref="Refresh(VideoRefreshFlags)"/> method when the <see cref="YoutubeVideo"/> object is done initializing.
         /// </summary>
         /// 
-        /// <param name="url">URL pointing to the video on Youtube.</param>
+        /// <param name="url">
+        ///     URL pointing to the video on Youtube.
+        /// </param>
         /// <param name="flags">
-        /// The <see cref="VideoRefreshFlags"/> which will be passed to the <see cref="Refresh(VideoRefreshFlags)"/> method
-        /// when the <see cref="YoutubeVideo"/> is done initializing.
+        ///     The <see cref="VideoRefreshFlags"/> which will be passed to the <see cref="Refresh(VideoRefreshFlags)"/> method
+        ///     when the <see cref="YoutubeVideo"/> is done initializing.
         /// </param>
         public YoutubeVideo(Uri url, VideoRefreshFlags flags)
         {
@@ -120,8 +128,11 @@ namespace Utube
         private YoutubeVideoFormat[] _formats;
 
         /// <summary>
-        /// Gets or sets the URL pointing to the <see cref="YoutubeVideo"/> on Youtube.
+        ///     Gets or sets the URL pointing to the <see cref="YoutubeVideo"/> on Youtube.
         /// </summary>
+        /// <returns>
+        ///     Returns <c>null</c> when the <see cref="YoutubeVideo"/> object has not been refreshed.
+        /// </returns>
         public Uri Url
         {
             get
@@ -132,7 +143,7 @@ namespace Utube
             {
                 // Check host of Uri value.
                 if (!Utils.ValidVideoUrl(value))
-                    throw new ArgumentException("value must be pointing to a Youtube video.", "value");
+                    throw new ArgumentException("value must be pointing to a Youtube video.", nameof(value));
 
                 // Find the videoId in the Uri value given.
                 var videoId = (string)null;
@@ -142,7 +153,7 @@ namespace Utube
                     case "youtube.com":
                         var queryParams = Utils.ParseQuery(value.Query);
                         if (!queryParams.Contains("v"))
-                            throw new ArgumentException("value does not contain a video query.", "value");
+                            throw new ArgumentException("value does not contain a video query.", nameof(value));
 
                         videoId = (string)queryParams["v"];
 
@@ -164,11 +175,11 @@ namespace Utube
                 }
 
                 if (string.IsNullOrEmpty(videoId))
-                    throw new ArgumentException("value does not contain a Youtube video ID.", "value");
+                    throw new ArgumentException("value does not contain a Youtube video ID.", nameof(value));
                 if (videoId.Length != VideoIDLength)
-                    throw new ArgumentException("value's Youtube video ID must be 11 characters long.", "value");
+                    throw new ArgumentException("value's Youtube video ID must be 11 characters long.", nameof(value));
                 if (!Utils.ValidYoutubeID(videoId))
-                    throw new ArgumentException("value contains invalid Youtube ID characters.", "value");
+                    throw new ArgumentException("value contains invalid Youtube ID characters.", nameof(value));
 
                 // Reset the object's field if the video Id differs.
                 if (_videoId != videoId)
@@ -180,45 +191,66 @@ namespace Utube
         }
 
         /// <summary>
-        /// Gets the title of the <see cref="YoutubeVideo"/>.
+        ///     Gets the title of the <see cref="YoutubeVideo"/>.
         /// </summary>
+        /// <returns>
+        ///     Returns <c>null</c> when the <see cref="YoutubeVideo"/> object has not been refreshed.
+        /// </returns>
         public string Title => _title;
 
         /// <summary>
-        /// Gets the description of the <see cref="YoutubeVideo"/>.
+        ///     Gets the description of the <see cref="YoutubeVideo"/>.
         /// </summary>
+        /// <returns>
+        ///     Returns <c>null</c> when the <see cref="YoutubeVideo"/> object has not been refreshed.
+        /// </returns>
         public string Description => _description;
 
         /// <summary>
-        /// Gets the Youtube ID of the <see cref="YoutubeVideo"/>.
+        ///     Gets the Youtube ID of the <see cref="YoutubeVideo"/>.
         /// </summary>
+        /// <returns>
+        ///     Returns <c>null</c> when the <see cref="YoutubeVideo"/> object has not been refreshed.
+        /// </returns>
         public string Id => _videoId;
 
         /// <summary>
-        /// Gets the number of views on the <see cref="YoutubeVideo"/>.
+        ///     Gets the number of views on the <see cref="YoutubeVideo"/>.
         /// </summary>
+        /// <returns>
+        ///     Returns <c>null</c> when the <see cref="YoutubeVideo"/> object has not been refreshed.
+        /// </returns>
         public long Views => _views;
 
         /// <summary>
-        /// Gets the duration or length of the <see cref="YoutubeVideo"/>.
+        ///     Gets the duration or length of the <see cref="YoutubeVideo"/>.
         /// </summary>
+        /// <returns>
+        ///     Returns <c>null</c> when the <see cref="YoutubeVideo"/> object has not been refreshed.
+        /// </returns>
         public TimeSpan Length => _length;
 
         /// <summary>
-        /// Gets the video qualities/formats available for the <see cref="YoutubeVideo"/>.
+        ///     Gets the video qualities/formats available for the <see cref="YoutubeVideo"/>.
         /// </summary>
-        public YoutubeVideoFormat[] FormatsAvailable => _formats;
+        /// <returns>
+        ///     Returns <c>null</c> when the <see cref="YoutubeVideo"/> object has not been refreshed.
+        /// </returns>
+        public YoutubeVideoFormat[] Formats => _formats;
 
         /// <summary>
-        /// Gets the Youtube playlist the <see cref="YoutubeVideo"/> is in.
-        /// Returns <c>null</c> if not in a <see cref="YoutubePlaylist"/>.
+        ///     Gets the Youtube playlist the <see cref="YoutubeVideo"/> is in.
         /// </summary>
+        /// <returns>
+        ///     Returns <c>null</c> when the <see cref="YoutubeVideo"/> object has not been refreshed or
+        ///     when the <see cref="YoutubeVideo"/> is not in a <see cref="YoutubePlaylist"/>.
+        /// </returns>
         public YoutubePlaylist Playlist => _playlist;
         #endregion
 
         #region Methods
         /// <summary>
-        /// Refreshes the <see cref="YoutubeVideo"/> object with the flags <see cref="VideoRefreshFlags.All"/> and updates it.
+        ///     Refreshes the <see cref="YoutubeVideo"/> object with the flags <see cref="VideoRefreshFlags.All"/> and updates it.
         /// </summary>
         public void Refresh()
         {
@@ -226,10 +258,11 @@ namespace Utube
         }
 
         /// <summary>
-        /// Refreshes the <see cref="YoutubeVideo"/> object with the specified <see cref="VideoRefreshFlags"/> and updates it.
+        ///     Refreshes the <see cref="YoutubeVideo"/> object with the specified <see cref="VideoRefreshFlags"/> and updates it.
         /// </summary>
+        /// 
         /// <param name="flags">
-        /// <see cref="VideoRefreshFlags"/> with which to update the <see cref="YoutubeVideo"/> object.
+        ///     <see cref="VideoRefreshFlags"/> with which to update the <see cref="YoutubeVideo"/> object.
         /// </param>
         public void Refresh(VideoRefreshFlags flags)
         {

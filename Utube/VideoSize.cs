@@ -3,12 +3,12 @@
 namespace Utube
 {
     /// <summary>
-    /// Represents the size of a <see cref="YoutubeVideo"/>.
+    ///     Represents the size of a <see cref="YoutubeVideo"/>.
     /// </summary>
     public struct VideoSize
     {
         /// <summary>
-        /// Represents an unknown <see cref="VideoSize"/>.
+        ///     Represents an unknown <see cref="VideoSize"/>.
         /// </summary>
         public static readonly VideoSize UnknownSize = new VideoSize()
         {
@@ -17,25 +17,32 @@ namespace Utube
         };
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="VideoSize"/> class with the specified
-        /// height and width;
+        ///     Initializes a new instance of the <see cref="VideoSize"/> class with the specified
+        ///     height and width;
         /// </summary>
-        /// <param name="width">Width of the <see cref="YoutubeVideo"/>.</param>
-        /// <param name="height">Height of the <see cref="YoutubeVideo"/>.</param>
+        /// 
+        /// <param name="width">
+        ///     Width of the <see cref="YoutubeVideo"/>.
+        /// </param>
+        /// <param name="height">
+        ///     Height of the <see cref="YoutubeVideo"/>.
+        /// </param>
         public VideoSize(int width, int height)
         {
             if (width < 0)
-                throw new ArgumentOutOfRangeException("width", "width must be non-negative.");
+                throw new ArgumentOutOfRangeException(nameof(width), "width must be non-negative.");
             if (height < 0)
-                throw new ArgumentOutOfRangeException("height", "height must be non-negative.");
+                throw new ArgumentOutOfRangeException(nameof(height), "height must be non-negative.");
 
             _width = width;
             _height = height;
         }
 
         private int _width;
+        private int _height;
+
         /// <summary>
-        /// Gets or sets the width of the <see cref="YoutubeVideo"/>.
+        ///     Gets or sets the width of the <see cref="YoutubeVideo"/>.
         /// </summary>
         public int Width
         {
@@ -46,15 +53,14 @@ namespace Utube
             set
             {
                 if (value < 0)
-                    throw new ArgumentOutOfRangeException("value", "value must be non-negative.");
+                    throw new ArgumentOutOfRangeException(nameof(value), "value must be non-negative.");
 
                 _width = value;
             }
         }
 
-        private int _height;
         /// <summary>
-        /// Gets or sets the height of the <see cref="YoutubeVideo"/>.
+        ///     Gets or sets the height of the <see cref="YoutubeVideo"/>.
         /// </summary>
         public int Height
         {
@@ -65,42 +71,52 @@ namespace Utube
             set
             {
                 if (value < 0)
-                    throw new ArgumentOutOfRangeException("value", "value must be non-negative.");
+                    throw new ArgumentOutOfRangeException(nameof(value), "value must be non-negative.");
 
                 _height = value;
             }
         }
 
         /// <summary>
-        /// Determines if the specified <see cref="VideoSize"/>, <paramref name="a"/> is equal to the
-        /// specified <see cref="VideoSize"/>, <paramref name="b"/>.
+        ///     Determines if the specified <see cref="VideoSize"/>, <paramref name="a"/> is equal to the
+        ///     specified <see cref="VideoSize"/>, <paramref name="b"/>.
         /// </summary>
+        /// 
         /// <param name="a"></param>
         /// <param name="b"></param>
-        /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
+        /// <returns>
+        ///     <c>true</c> if they are equal; otherwise, <c>false</c>.
+        /// </returns>
         public static bool operator ==(VideoSize a, VideoSize b)
         {
             return a.Equals(b);
         }
 
         /// <summary>
-        /// Determines if the specified <see cref="VideoSize"/>, <paramref name="a"/> is not equal to the
-        /// specified <see cref="VideoSize"/>, <paramref name="b"/>.
+        ///     Determines if the specified <see cref="VideoSize"/>, <paramref name="a"/> is not equal to the
+        ///     specified <see cref="VideoSize"/>, <paramref name="b"/>.
         /// </summary>
+        /// 
         /// <param name="a"></param>
         /// <param name="b"></param>
-        /// <returns><c>true</c> if they are not equal; otherwise, <c>false</c>.</returns>
+        /// <returns>
+        ///     <c>true</c> if they are not equal; otherwise, <c>false</c>.
+        /// </returns>
         public static bool operator !=(VideoSize a, VideoSize b)
         {
             return !(a == b);
         }
 
         /// <summary>
-        /// Determines whether the specified <see cref="VideoSize"/> object is equal to the current <see cref="VideoSize"/> object.
+        ///     Determines whether the specified <see cref="VideoSize"/> object is equal to the current <see cref="VideoSize"/> object.
         /// </summary>
-        /// <param name="obj">The <see cref="VideoSize"/> object to compare with the current <see cref="VideoSize"/> object.</param>
+        /// 
+        /// <param name="obj">
+        ///     The <see cref="VideoSize"/> object to compare with the current <see cref="VideoSize"/> object.
+        /// </param>
+        /// 
         /// <returns>
-        /// <c>true</c> if the specified <see cref="VideoSize"/> object is equal with the current <see cref="VideoSize"/> object; otherwise, <c>false</c>.
+        ///     <c>true</c> if the specified <see cref="VideoSize"/> object is equal with the current <see cref="VideoSize"/> object; otherwise, <c>false</c>.
         /// </returns>
         public bool Equals(VideoSize obj)
         {
@@ -108,11 +124,14 @@ namespace Utube
         }
 
         /// <summary>
-        /// Determines whether the specified object is equal to the current <see cref="VideoSize"/> object.
+        ///     Determines whether the specified object is equal to the current <see cref="VideoSize"/> object.
         /// </summary>
-        /// <param name="obj">The object to compare with the current <see cref="VideoSize"/> object.</param>
+        /// 
+        /// <param name="obj">
+        ///     The object to compare with the current <see cref="VideoSize"/> object.
+        /// </param>
         /// <returns>
-        /// <c>true</c> if the specified object is equal with the current <see cref="VideoSize"/> object; otherwise, <c>false</c>.
+        ///     <c>true</c> if the specified object is equal with the current <see cref="VideoSize"/> object; otherwise, <c>false</c>.
         /// </returns>
         public override bool Equals(object obj)
         {
@@ -128,28 +147,39 @@ namespace Utube
         }
 
         /// <summary>
-        /// Gets the hash code for the current instance of the <see cref="VideoSize"/> object.
+        ///     Gets the hash code for the current instance of the <see cref="VideoSize"/> object.
         /// </summary>
-        /// <returns>A hash code for the current instance of the <see cref="VideoSize"/> object.</returns>
+        /// 
+        /// <returns>
+        ///     A hash code for the current instance of the <see cref="VideoSize"/> object.
+        /// </returns>
         public override int GetHashCode()
         {
             return (_width << 16) ^ _height;
         }
 
         /// <summary>
-        /// Returns a string that represents the current instance of this <see cref="VideoSize"/> object.
+        ///     Returns a string that represents the current instance of this <see cref="VideoSize"/> object.
         /// </summary>
-        /// <returns>A string that represents the current instance of this <see cref="VideoSize"/> object.</returns>
+        /// 
+        /// <returns>
+        ///     A string that represents the current instance of this <see cref="VideoSize"/> object.
+        /// </returns>
         public override string ToString()
         {
             return _width + "x" + _height;
         }
 
         /// <summary>
-        /// Converts the string representation of a <see cref="VideoSize"/> into its <see cref="VideoSize"/> object equivalent.
+        ///     Converts the string representation of a <see cref="VideoSize"/> into its <see cref="VideoSize"/> object equivalent.
         /// </summary>
-        /// <param name="value">A string representing a <see cref="VideoSize"/>.</param>
-        /// <returns><see cref="VideoSize"/> object equivalent of the specified string.</returns>
+        /// 
+        /// <param name="value">
+        ///     A string representing a <see cref="VideoSize"/>.
+        /// </param>
+        /// <returns>
+        ///     <see cref="VideoSize"/> object equivalent of the specified string.
+        /// </returns>
         public static VideoSize Parse(string value)
         {
             if (string.IsNullOrWhiteSpace(value))
@@ -176,12 +206,18 @@ namespace Utube
         }
 
         /// <summary>
-        /// Converts the string representation of a <see cref="VideoSize"/> into its <see cref="VideoSize"/> object equivalent and
-        /// returns a boolean indicating if the conversion succeeded.
+        ///     Converts the string representation of a <see cref="VideoSize"/> into its <see cref="VideoSize"/> object equivalent and
+        ///     returns a boolean indicating if the conversion succeeded.
         /// </summary>
-        /// <param name="s">A string representing a <see cref="VideoSize"/>.</param>
-        /// <param name="result"></param>
-        /// <returns><c>true</c> if the conversion succeeded; otherwise, <c>false</c>.</returns>
+        /// 
+        /// <param name="s">
+        ///     A string representing a <see cref="VideoSize"/>.
+        /// </param>
+        /// <param name="result">
+        /// </param>
+        /// <returns>
+        ///     <c>true</c> if the conversion succeeded; otherwise, <c>false</c>.
+        /// </returns>
         public static bool TryParse(string s, out VideoSize result)
         {
             result = default(VideoSize);
